@@ -47,7 +47,7 @@ Alterar Cor de letras e fundo do Menu( CMD )
   * Selecionar o arquivo pelo ENTER
   * Perguntar Excluir [S/N]?
   
-<h1>Sobre/h1>
+<h1>Sobre</h1>
 
 * Sou iniciante em programação.
 * Um projeto para aprendizagem com comentários para fixação do estudo.
