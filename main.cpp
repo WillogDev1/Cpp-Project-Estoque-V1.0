@@ -195,7 +195,7 @@ tirar o switch por if talvez.
 
 
 int main(){
-    system("MODE con cols=60 lines=60");
+    system("MODE con cols=60 lines=40");
 /*
 Definimos o tamanho do CMD(Menu) que queremos
 Se mudar a quantidade de colunas e linhas isso altera
@@ -232,8 +232,9 @@ Declaramos a variável li que representa Linha na posição 1 e tecla que será  usa
 
         printf("\t1 - CADASTRAR PRODUTO         \n");
         printf("\t2 - LISTAR PRODUTOS           \n");
-        printf("\t3 - VENDAS                    \n");
-        printf("\t4 - SAIR                      \n");
+        printf("\t3 - DELETAR                   \n");
+        printf("\t4 - VENDAS                    \n");
+        printf("\t5 - SAIR                      \n");
 
         gotoxy(4,li);//Inicia na posição na coluna 4 linha 1.
         printf("->");//Imprime na posição acima o desenho.
@@ -274,11 +275,13 @@ Declaramos a variável li que representa Linha na posição 1 e tecla que será  usa
             listar_Produto();
             break;
         case 3:
-            listar_Produto();
-            break;
+            return 0;
         case 4:
             return 0;
+        case 5:
+            return 0;
         }
+
  }while(li != 6);//Linha do menu que representa Sair, ao clicar retorna 0, finaliza o //programa.
     return 0;
 }
