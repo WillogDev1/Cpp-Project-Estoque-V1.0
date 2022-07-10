@@ -1,10 +1,12 @@
-Controle de estoque e NoSQL em Cpp<br>
-Contendo<br>
-* Menu com teclas                   <- Finalizado
-* Cadastrar produto         (Create)<- Finalizado
-* Ler Produtos cadastrados (Read  )<-Finalizado
-* Atualizar produto         (Update)<- Em processo
-* Deletar produto           (Delete)<- Em processo<br>
+*<h1 align="center">Controle de estoque com Gravação de dados Cpp</h1><br>*
+
+* O programa foi idealizado apenas para aprendizagem e porque eu achei legal o conceito, vamos criar um controle de estoque sem um banco de dados como Mysql, MongoDB etc.. O produto será gravado como txt e a quantidade será lançado dentro, assim podemos acessar a pasta e listar os produtos(Arquivos)<br>
+
+ * Menu com teclas                   <- Finalizado
+ * Cadastrar produto         (Create)<- Finalizado
+ * Ler Produtos cadastrados  (Read  ) <-Finalizado
+ * Atualizar produto         (Update)<- Em processo
+ * Deletar produto           (Delete)<- Em processo<br>
 
 <h1>Menu</h1>
 
