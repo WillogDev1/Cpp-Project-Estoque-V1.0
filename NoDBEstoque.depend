@@ -1,0 +1,17 @@
+# depslib dependency file v1.0
+1657417915 source:c:\users\will\documents\cpp\nodbesto\nodbestoque\main.cpp
+	<iostream>
+	<stdio.h>
+	<locale.h>
+	<conio.h>
+	<windows.h>
+	<string.h>
+	<stdlib.h>
+	<cctype>
+	<cstring>
+	<cstdio>
+	<fstream>
+	<string>
+	<dirent.h>
+	<winsock2.h>
+
