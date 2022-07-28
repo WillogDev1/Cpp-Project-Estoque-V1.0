@@ -1,13 +1,13 @@
 #include <iostream>
-//Permite usar controles de leituras e gravaÁıes como cin, getline etc..
+//Permite usar controles de leituras e grava√ß√µes como cin, getline etc..
 #include <stdio.h>
-//Permite entrada e saÌda de dados
+//Permite entrada e sa√≠da de dados
 #include <locale.h>
 //Permite para usar setlocale
 #include <conio.h>
 //Permite o uso de kbhit
 #include <windows.h>
-//Permite fazer o uso de todas as funÁıes da API do windows
+//Permite fazer o uso de todas as fun√ß√µes da API do windows, exemplo cor do CMD e cor da letra
 #include <string.h>
 //Permite o uso de strcpy, strncpy, strcmp dentre outros
 #include <stdlib.h>
@@ -15,9 +15,9 @@
 #include <cctype>
 //Permite declara tolower, toupper, isdigit, isspace etc...
 #include <cstring>
-//Permite funÁıes adicionais para manipular strings e arrays
+//Permite fun√ß√µes adicionais para manipular strings e arrays
 #include <cstdio>
-//Permite entrada e saÌda de dados como printf, gets e etc..
+//Permite entrada e sa√≠da de dados como printf, gets e etc..
 #include <fstream>
 //Permite o uso de Ifstream, ofstream e afins
 #include <string>
@@ -25,8 +25,10 @@
 #include <dirent.h>
 //Permite o uso de readdir para acessar e ler diretorios
 #include <winsock2.h>
+//Permite usar algumas fun√ß√µes sem STD::cout
+#include <vector>
+//Permite usar vector, push dentre outras//Classe
 
-//Permite usar algumas funÁıes sem STD::cout
 using namespace std;
 //             0    1     2    3    4     5      6       7        8
 typedef enum{BLACK,BLUE,GREEN,CYAN,RED,MAGENTA,BROWN,LIGHTGRAY,DARKGRAY,
@@ -49,37 +51,37 @@ void textcolor (int letra, int fundo)
 }
 void gotoxy(int x,int y)
 {
-//Permite se movimentar por localizaÁ„o
+//Permite se movimentar por localiza√ß√£o
     COORD c;//Struct COORD recebe c
     c.X = x;//Coluna
     c.Y = y;//Linha
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),c);
 }
 
-void cadastrar_Produto()
+void cadastrarProduto()
 {
-//Declaramos um diretÛrio para salvar os arquivos
+//Declaramos um diret√≥rio para salvar os arquivos
 string directory = "C:/db_NoSQL/produtos/";
 /*
-Lembra do ìusing namespace std;î ent„o, basicamente n„o precisamos mais usar o std
-teste para ver que conseguimos rodar com ambas as declaraÁıes.
-Note, se a vari·vel foi declarada com std:: ela precisa ser usada com std:: posteriormente
+Lembra do ‚Äúusing namespace std;‚Äù ent√£o, basicamente n√£o precisamos mais usar o std
+teste para ver que conseguimos rodar com ambas as declara√ß√µes.
+Note, se a vari√°vel foi declarada com std:: ela precisa ser usada com std:: posteriormente
 */
 std::string name;
 std::string qtd;
 char ch;
-//Declarando vari·vel para tecla ESC
+//Declarando vari√°vel para tecla ESC
 bool ESCAPE = false;
 //Booleano para loop do while
     while (!ESCAPE)
-//Enquanto ESCAPE for diferente de FALSE faÁa
+//Enquanto ESCAPE for diferente de FALSE fa√ßa
     {
     cout<<"*************************\n";
     cout<<"Insira o nome do produto: ";
     std::getline(std::cin,name);
-//Usando Getline para conseguir pegar string com espaÁos
+//Usando Getline para conseguir pegar string com espa√ßos
     std::ofstream out(directory + name + ".txt");
-//Entra o diretÛrio depois o nome do arquivo e o tipo de arquivo
+//Entra o diret√≥rio depois o nome do arquivo e o tipo de arquivo
     cout<<"Insira a Quantidade: ";
     getline(std::cin,qtd);
     out << qtd;
@@ -90,7 +92,7 @@ bool ESCAPE = false;
     ao receber os dados.
 */
         if (kbhit)
-//determinar se uma tecla foi pressionada ou n„o
+//determinar se uma tecla foi pressionada ou n√£o
         {
             cout<<"Cadastrar novo Item aperte ENTER ou aperte ESC para voltar ao menu principal"<<endl;
             ch = getch();
@@ -101,7 +103,7 @@ bool ESCAPE = false;
     }
 }
 
-void listar_Produto()
+void listarProduto()
 {
 system("MODE con cols=168 lines=60");
 DIR *dir;
@@ -112,13 +114,19 @@ struct dirent *entry;
         ...
         char d_name[PATH_MAX+1]
     }
-Dirent È um struct do proprio sistema contendo essas variaveis prÈ declaradas
+Dirent √© um struct do proprio sistema contendo essas variaveis pr√© declaradas
 oque nos permite chamar o d_name com o entry
-entry È um ponteiro na memoria que liga a dirent
+entry √© um ponteiro na memoria que liga a dirent
 entry->d_name
 */
-int i = 0;
+string arqV;
+std::vector<std::string> files;
+string directory = "C:/db_NoSQL/produtos/";
+string qtdAtualiza;
 size_t count = 0;
+char *indexar[100] = {"foo"};
+int j = 0;
+int i = 0;
 /*
     Usado para indexar o array que contaremos quanta arquivos temos
 */
@@ -132,12 +140,15 @@ size_t count = 0;
             while ((entry = readdir(dir)) != NULL)
 /*
     declara a variavel entry para receber o readddir de do dir e se for difrente de NULL
-    ou seja, enquanto arquivo existir (for diferente de nulo) faÁa
+    ou seja, enquanto arquivo existir (for diferente de nulo) fa√ßa
 */
-            if ( strcmp( entry->d_name, "." ) && strcmp( entry->d_name, ".." ) )
+            if ( strcmp( entry->d_name, "." ) && strcmp( entry->d_name, ".." ))
+
             {
-                printf("    %zu) - %s\n", count + 1, entry->d_name);
+
+                printf("    %zu) - %s\n", count + 0, indexar[count] = entry->d_name);
                 count++;
+
             }
             gotoxy(0,li);
             printf("->");
@@ -160,84 +171,158 @@ size_t count = 0;
                         li=0;
                     else
                         if(li < 1)
-//se a linha que estamos percorrendo for menor que 1 ele pula para posiÁ„o total
+//se a linha que estamos percorrendo for menor que 1 ele pula para posi√ß√£o total
                             li=count;
                     gotoxy(0,li);
                     printf("->");
-                    gotoxy(79,24);/* se n„o quiser que cursor fique piscando ali */
+                    gotoxy(79,24);/* se n√£o quiser que cursor fique piscando ali */
                     }
 
                         }while (tecla != 13);
 //Quando tecla for igual a ENTER
 system("cls");
-cout<<li;
-//Imprime a linha selecionada, futuramente ser· usada como index
-system("PAUSE");
-//Pausa o sistema para podermos visualizar a variavel li
-//Essa parte ser· excluido posteriormente, È apenas para verificaÁ„o do Index.
 
-                        switch(li)
-/*
-ApÛs a tecla ENTER ser presionada ele pega o numero armazenado em li e troca para caso
-correspondente.
-*/
-                        {
-/*
-Agora precisamos fazer com que pelo index pegue o nome do produto(arquivo)
-Swtich apenas aceita constant ou seja apenas numeros 1,2,3 etc..
-tirar o switch por if talvez.
-*/
-                            case 1:
-                            cadastrar_Produto();
-                            //break;
-                        }while(tecla != 27);
+    if ((dir = opendir("C:/db_NoSQL/produtos/")) != nullptr) {
+        while ((entry = readdir(dir)) != nullptr) {
+            if ( strcmp( entry->d_name, "." ) && strcmp( entry->d_name, ".." ))
+            files.push_back(std::string (entry->d_name));
+        }//Declaramos novamente para abrir o local de arquivo e listar no vetor files
+         //assim podemos indexar cada nome encontrado no diretorio
+        closedir (dir);
+    } else {
+        perror ("opendir");
+    }
+
+
+    arqV = files[li - 1];//arqV recebe a posi√ß√£o li -1 que corresponde a op√ß√£o selecionada
+    cout<<arqV<<endl;//imprime para verificar
+    puts("Insira a quantidade atualizada \n");
+    std::getline(std::cin,qtdAtualiza);
+    std::ofstream out(directory + arqV);//abri o arquivo selecionado
+    out<<qtdAtualiza;//atualiza a quantidade
+    /*
+        -Implementar
+            -Perguntar ao usuario se deseja atualizar ou voltar ao menu
+            -Atualiza no final do arquivo e n√£o apaga o anterior
+                -Futuro distante
+                    -Como j√° comentado queremos salvar dado em formato JSON assim conseguimos salvar mais dados
+                        e logo, aqui, faremos alterar apenas a quantidade desse formato.
+                            info{
+                                "codigo": "codigo",
+                                "quantidade": "quantidade",
+                                "categoria": "categoria"
+                            }
+    */
+system("PAUSE");
+}
+void excluirProduto()
+{
+system("MODE con cols=168 lines=60");
+DIR *dir;
+struct dirent *entry;
+std::vector<std::string> files;
+string directory = "C:/db_NoSQL/produtos/";
+size_t conta = 0;
+    if ((dir = opendir("C:/db_NoSQL/produtos/")) == NULL)
+    perror("opendir() error");
+    int li=1,tecla;
+    puts("      Produtos cadastrados");
+        do
+
+        {
+            while ((entry = readdir(dir)) != NULL)
+            {
+                if ( strcmp( entry->d_name, "." ) && strcmp( entry->d_name, ".." ))
+
+                {
+                        printf("    %zu) - %s\n", conta + 1, entry->d_name);
+                        conta++;
+
+                }
+            }
+            gotoxy(0,li);
+            printf("->");
+            gotoxy(79,24);
+                tecla=0;
+                if(kbhit())
+                {
+                    tecla = getch();
+                    gotoxy(0,li);
+                    printf("  ");
+                    if(tecla==224)
+                        tecla = getch();
+                    if(tecla == 72)
+                        li--;
+                    else
+                        if(tecla == 80)
+                            li++;
+                    if(li > conta)
+
+                        li=0;
+                    else
+                        if(li < 1)
+
+                            li=conta;
+                    gotoxy(0,li);
+                    printf("->");
+                    gotoxy(79,24);
+                    }
+
+                        }while (tecla != 13);
+
+system("cls");
+    if ((dir = opendir("C:/db_NoSQL/produtos/")) != nullptr) {
+        while ((entry = readdir(dir)) != nullptr) {
+            if ( strcmp( entry->d_name, "." ) && strcmp( entry->d_name, ".." ))
+            files.push_back(std::string (entry->d_name));//adiciona o elemento ao final do vetor files
+        }
+        closedir (dir);
+    } else {
+        perror ("opendir");
+    }
+
+    string deleteArqv;
+    char diretorio[100] = "C:/db_NoSQL/produtos/";//Declaramos o diretorio
+    deleteArqv = files[li - 1];//deleteArqv recebe a posi√ß√£o do vetor
+    const char * c = deleteArqv.c_str();//trasnforma em consta char
+    strcat(diretorio,c);//concatena diretorio com o nome do arquivo
+    cout<<diretorio<<endl;
+    int rc = remove( diretorio );//remove o arquivo selecionado
+    system("PAUSE");
 }
 
-
 int main(){
+/*
+   - Em int main() vamos criar nosso menu principal
+    e partir dele os submenus que executam outras fun√ß√µes
+*/
     system("MODE con cols=60 lines=40");
-/*
-Definimos o tamanho do CMD(Menu) que queremos
-Se mudar a quantidade de colunas e linhas isso altera
-nosso programa causando bugs.
-*/
+//Aqui conseguimos dizer o tamanho do CMD cols(colunas) lines(linha)
     system("title Programa Vendas");
-/*
-	Define tÌtulo do CMD(Menu/Programa)
-*/
-
-
-
+//Define um t√≠tulo que aparece na parte superior do
     int li=1,tecla;
 /*
-Declaramos a vari·vel li que representa Linha na posiÁ„o 1 e tecla que ser·  usada para armazenar a tecla pressionada pelo usu·rio.
+Declaramos vari√°veis "li" e "tecla", "li" ir√° representar a linha
+atual e tecla ser√° usado para esperar por uma entrada do teclado
 */
     setlocale(LC_ALL,"Portuguese");
-/*
-	Declara localidade como Brasil Portugues para podermos usar a acentuaÁ„o.
-*/
+//Diz que a localiza√ß√£o √© portugues para podermos usar caracteres com acentua√ß√£o
 
-/*
-	Do (faÁa) While (Enquanto) È basicamente oque ele faz. FaÁa o menu do sistema e	espere por teclas pressionadas.
-	Se pressionada executa funÁ„o tudo isso
-	enquanto tecla for diferente de 13, quero alterar para tecla ESC enquanto
-	tecla !=(Diferente) de 27 mas por algum motivo n„o funciona.
-	27 È o n˙mero correspondente a tecla ESC em ASCII.
-
-*/
     do{
-        textcolor(9,15);//cor do sistema, (Cor da letra, Fundo do CMD)
-        system("cls");// Limpa a tela do CMD
+//Fa√ßa
+        textcolor(9,15);
+//Declara (Cor da Linha, Cor de fundo)
+        system("cls");
+//Limpa o CMD
         cout<<("\t\tMENU\n");
-
         printf("\t1 - CADASTRAR PRODUTO         \n");
         printf("\t2 - LISTAR PRODUTOS           \n");
         printf("\t3 - DELETAR                   \n");
         printf("\t4 - VENDAS                    \n");
         printf("\t5 - SAIR                      \n");
-
-        gotoxy(4,li);//Inicia na posiÁ„o na coluna 4 linha 1.
-        printf("->");//Imprime na posiÁ„o acima o desenho.
+//Desenho do Menu
+        gotoxy(4,li);//Inicia na posi√ß√£o coluna 4 linha 1.
+        printf("->");//Imprime na posi√ß√£o acima o desenho.
         gotoxy(79,24);// tira o cursor do cmd da tela.
         do{
             tecla=0;
@@ -245,43 +330,50 @@ Declaramos a vari·vel li que representa Linha na posiÁ„o 1 e tecla que ser·  usa
                 tecla = getch();
                 gotoxy(4,li);
                 printf("  ");
-                if(tecla==224)
-                    tecla = getch();
+ // Se tecla for pressionada vai para posi√ß√£o anterior e imprime backspaces para apagar a seta da op√ß√£o anterior "->"
                 if(tecla == 72)
+//se tecla for igual 72 (Seta para cima)
                     li--;
+//li(Linha) andar -1 posi√ß√£o da linha
                 else
+//se tecla for igual 80 (Seta para baixo)
                     if(tecla == 80)
                         li++;
-                if(li > 4)
+//li(Linha) andar +1 posi√ß√£o da linha
+                if(li > 5)
                     li=1;
+//Se li(Linha) for maior que 4, li recebe 1 retornando a posi√ß√£o 1 do menu
                 else
                     if(li < 1)
-                        li=4;
+                        li=5;
+//Se li(Linha) for menor que 1 li recebe 4 retornando a posi√ß√£o 4 do menu
                 gotoxy(4,li);
                 printf("->");
-                gotoxy(79,24); /* se n„o quiser que cursor fique piscando ali */
+                gotoxy(79,24);
+//Imprime a seta "->" quando pressionado as teclas
             }
         }while(tecla != 13);
-	/*
-		Enquanto diferente da tecla ENTER(ASCI 13), se for igual entra em Switch
-        onde podemos criar os Submenus e suas funÁıes.
-    */
+//Enquanto for diferente da tecla ENTER se pressionado fa√ßa
         system("cls");
         switch(li){
+//Pegamos a li atual quando pressionado ENTER e criamos CASE
         case 1:
-            cadastrar_Produto();
+            cadastrarProduto();
             break;
         case 2:
-            listar_Produto();
+            listarProduto();
             break;
         case 3:
-            return 0;
+            excluirProduto();
+            break;
         case 4:
             return 0;
         case 5:
             return 0;
         }
-
- }while(li != 6);//Linha do menu que representa Sair, ao clicar retorna 0, finaliza o //programa.
+ }while(li != 27);
+//Repete enquanto li for diferente de 27
+//se caso for 27 retorna 0
     return 0;
+
 }
