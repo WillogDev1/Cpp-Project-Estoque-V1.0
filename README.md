@@ -5,8 +5,8 @@
  * Menu com teclas                   <- Finalizado
  * Cadastrar produto         (Create)<- Finalizado
  * Ler Produtos cadastrados  (Read  ) <-Finalizado
- * Atualizar produto         (Update)<- Em processo
- * Deletar produto           (Delete)<- Em processo<br>
+ * Atualizar produto         (Update)<- Finalizado
+ * Deletar produto           (Delete)<- Finalizado<br>
 
 <h1>Menu</h1>
 
