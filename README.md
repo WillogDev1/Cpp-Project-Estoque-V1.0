@@ -53,4 +53,4 @@ Alterar Cor de letras e fundo do Menu( CMD )
 * Um projeto para aprendizagem com comentários para fixação do estudo.
 * Um projeto divertido de se implementar.
 * Qualquer comentário, crítica ou dúvida será muito bem vindo.
-* Um walkthrough será feito pelo linked de como foi cada parte do projeto e como está indo.
+
